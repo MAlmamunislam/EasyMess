@@ -13,11 +13,18 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  user : {
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    },
+  },
+  user: {
     additionalFields: {
-      role:{
-        default : "member"
-      }
-    }
-  }
+      role: {
+        type: "string",
+        defaultValue: "member",
+      },
+    },
+  },
 });

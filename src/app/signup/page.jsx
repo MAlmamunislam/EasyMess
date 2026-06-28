@@ -29,6 +29,7 @@ export default function SignupForm() {
         name: formdata.name ,
         email: formdata.email ,
         password: formdata.password ,
+        image:'https://i.pravatar.cc/300?img=50',
         role: "member"
       });
 
@@ -43,6 +44,15 @@ export default function SignupForm() {
       setIsLoading(false); // Stop loading regardless of success/error
     }
   };
+
+  // Google Sign In
+  const handleGoogleSignIn = async () => {
+      const data = await authClient.signIn.social({
+    provider: "google",
+  });
+ 
+
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
@@ -106,7 +116,7 @@ export default function SignupForm() {
           </div>
         </div>
 
-        <button className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-50 transition hover:cursor-pointer">
+        <button onClick = {handleGoogleSignIn} className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-50 transition hover:cursor-pointer">
           <img
             src="https://www.google.com/favicon.ico"
             alt="Google"
