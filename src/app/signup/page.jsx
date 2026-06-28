@@ -29,6 +29,7 @@ export default function SignupForm() {
         name: formdata.name ,
         email: formdata.email ,
         password: formdata.password ,
+        role: "member"
       });
 
       if (error) {
@@ -73,7 +74,7 @@ export default function SignupForm() {
               <Lock className="absolute left-3 top-3 text-gray-400" size={18} />
               <input name="password" type={showPassword ? "text" : "password"} required disabled={isLoading} className="w-full pl-10 pr-10 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="••••••••" />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-3 text-gray-400">
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showPassword ? <EyeOff className='hover:cursor-pointer' size={18} /> : <Eye className='hover:cursor-pointer' size={18} />}
               </button>
             </div>
           </div>
@@ -84,14 +85,14 @@ export default function SignupForm() {
               <Lock className="absolute left-3 top-3 text-gray-400" size={18} />
               <input name="confirmPassword" type={showConfirmPassword ? "text" : "password"} required disabled={isLoading} className="w-full pl-10 pr-10 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="••••••••" />
               <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-3 top-3 text-gray-400">
-                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showConfirmPassword ? <EyeOff className='hover:cursor-pointer' size={18} /> : <Eye className='hover:cursor-pointer' size={18} />}
               </button>
             </div>
           </div>
 
           <button 
             disabled={isLoading} 
-            className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-blue-400 flex items-center justify-center gap-2"
+            className="w-full bg-orange-400 text-white py-2 rounded-lg font-semibold hover:bg-orange-500 transition disabled:bg-orange-400 flex items-center justify-center gap-2 hover:cursor-pointer"
           >
             {isLoading ? <Loader2 className="animate-spin" size={20} /> : "Sign Up"}
           </button>
