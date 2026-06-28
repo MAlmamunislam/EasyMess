@@ -1,5 +1,6 @@
 import React from "react";
-import DashboardSideBar from "./DashboardSideBar";
+import Sidebar, { Navigation } from "./DashboardSideBar";
+
 
 const layout = ({ children }) => {
   return (
@@ -7,7 +8,7 @@ const layout = ({ children }) => {
 
       {/* Sidebar */}
       <aside className="w-full md:w-72 border-r bg-white">
-        <DashboardSideBar />
+        <Sidebar/>
       </aside>
 
       {/* Content */}
