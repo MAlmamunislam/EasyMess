@@ -10,8 +10,7 @@ export default function CreateMessForm() {
   const [preview, setPreview] = useState(null);
   const user = GetUser();
   const userId = user?.user?.id;
-
-
+  const creaotrName = user?.user?.name;
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -43,6 +42,7 @@ export default function CreateMessForm() {
           messLocation: data.messLocation,
           messImage: imageUrl,
           createdBy: userId,
+          creaotrName:creaotrName ,
         }),
       });
 

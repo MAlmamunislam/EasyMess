@@ -54,7 +54,7 @@ export default function Sidebar() {
     },
     {
       name: "My Mess",
-      href: "/manager-dashboard/my-mess",
+      href: "/dashboard/manager-dashboard/my-mess",
       icon: Home,
       roles: [ "manager"],
     },
@@ -66,7 +66,7 @@ export default function Sidebar() {
     },
     {
       name: "Meals",
-      href: "/meals",
+      href: "/dashboard/user-dashboard/meals",
       icon: Utensils,
       roles: ["member"],
     },
