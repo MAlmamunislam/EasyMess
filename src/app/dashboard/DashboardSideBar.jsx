@@ -59,6 +59,12 @@ export default function Sidebar() {
       roles: [ "manager"],
     },
     {
+      name: "My Meals",
+      href: "/dashboard/manager-dashboard/my-meals",
+      icon: Utensils,
+      roles: [ "manager"],
+    },
+    {
       name: "My Mess",
       href: "/manager-dashboard/my-mess",
       icon: Home,
@@ -82,7 +88,7 @@ export default function Sidebar() {
       icon: Receipt,
       roles: ["member"],
     },
-    { name: "Members", href: "/manager-dashboard/members", icon: Users, roles: ["manager"] },
+    { name: "Members", href: "/dashboard/manager-dashboard/members", icon: Users, roles: ["manager"] },
     { name: "Bazaar", href: "/manager-dashboard/bazaar", icon: Store, roles: ["manager"] },
     { name: "Payments", href: "/manager-dashboard/payments", icon: Wallet, roles: ["manager"] },
     { name: "pending-requests", href: "/dashboard/manager-dashboard/pending-requests", icon:  ClipboardClock, roles: ["manager"] },

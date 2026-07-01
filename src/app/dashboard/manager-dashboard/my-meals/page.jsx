@@ -16,6 +16,8 @@ const MealCalendar = () => {
 
   const daysInMonth = new Date(year, month, 0).getDate();
 
+ 
+
 
 
   const fetchMeals = async () => {
@@ -39,6 +41,8 @@ const MealCalendar = () => {
   }, [userId]);
 
   useEffect(() => { fetchMeals(); }, [userId, month, year]);
+
+  console.log( 'userId' ,userId, 'messID', messId, 'jounDate', joiningDate, 'mont', month, 'year' , year, 'meal' , meals); // ডিবাগিংয়ের জন্য কনসোল লগ
   
 
   const handleUpdate = async (day, type, currentStatus) => {
@@ -51,6 +55,7 @@ const MealCalendar = () => {
     const data = await res.json();
     if (data.success) { fetchMeals(); } else { toast.warning(data.message); }
   };
+  console.log( userId, messId,    )
   
 
   return (
