@@ -42,7 +42,7 @@ const MealCalendar = () => {
 
   useEffect(() => { fetchMeals(); }, [userId, month, year]);
 
-  console.log( 'userId' ,userId, 'messID', messId, 'jounDate', joiningDate, 'mont', month, 'year' , year, 'meal' , meals); // ডিবাগিংয়ের জন্য কনসোল লগ
+
   
 
   const handleUpdate = async (day, type, currentStatus) => {
@@ -60,7 +60,7 @@ const MealCalendar = () => {
 
   return (
     <div className="p-5 bg-white rounded-xl shadow max-w-lg mx-auto">
-      {/* হেডার কোড একই থাকবে */}
+  
       <div className="flex justify-between mb-5">
         <button onClick={() => setMonth(m => m === 1 ? 12 : m - 1)} className="px-4 py-2 bg-gray-200 rounded">←</button>
         <h2 className="font-bold text-xl">{month}/{year}</h2>
@@ -86,14 +86,12 @@ const MealCalendar = () => {
           <div key={day} className="grid grid-cols-4 gap-2 mb-2 text-center items-center">
             <span className="font-semibold">{day}</span>
             {["breakfast", "lunch", "dinner"].map((type) => {
-              // মূল লজিক: জয়েনিংয়ের আগের দিনগুলোতে কিছুই হবে না।
-              // জয়েনিংয়ের পরে বা সেদিন থেকে, যদি ডাটাবেজে না থাকে (undefined/false) তবে সেটি true (ON) হিসেবে ধরা হবে।
               const active = isBeforeJoining ? false : (meal[type] !== false);
 
               // কালার লজিক
               let bgColor;
               if (isBeforeJoining) {
-                bgColor = "bg-gray-50 border-none"; // জয়েনিংয়ের আগের দিন ফাঁকা
+                bgColor = "bg-gray-50 border-none"; 
               } else {
                 bgColor = !active ? "bg-white border" : (isPast ? "bg-orange-400" : "bg-orange-200");
               }
@@ -103,7 +101,7 @@ const MealCalendar = () => {
                   key={type}
                   onClick={() => {
                     if (isBeforeJoining) return;
-                    if (isPast) { toast.error("অতীতের মিল পরিবর্তন করা যাবে না"); return; }
+                    if (isPast) { toast.error("you can't edit the meal after joining"); return; }
                     handleUpdate(day, type, active);
                   }}
                   className={`h-10 rounded ${bgColor} ${!isBeforeJoining && 'hover:cursor-pointer'}`}

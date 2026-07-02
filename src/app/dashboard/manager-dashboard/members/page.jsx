@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { GetUser } from "@/components/action/action";
 import { toast } from "sonner";
+import { Check, X } from "lucide-react";
 
 const ManagerMealDashboard = () => {
   const user = GetUser();
@@ -64,7 +65,7 @@ const ManagerMealDashboard = () => {
         });
       }
     } catch (err) {
-      toast.error("ডাটা লোড করতে সমস্যা হয়েছে");
+      toast.error("Error fetching data");
     } finally {
       setLoading(false);
     }
@@ -90,18 +91,18 @@ const ManagerMealDashboard = () => {
         },
       );
       if ((await res.json()).success) {
-        toast.success("আপডেট সফল!");
+        toast.success("update success!");
         setIsModalOpen(false);
         fetchData();
       }
     } catch (err) {
-      toast.error("আপডেট ফেইলড");
+      toast.error("failed to update");
     }
   };
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">🍽️ Manager Meal Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-6">Manager Meal Dashboard</h1>
       <input
         type="date"
         value={date}
@@ -139,15 +140,21 @@ const ManagerMealDashboard = () => {
                   const currentDate = new Date(date);
                   currentDate.setUTCHours(0, 0, 0, 0);
 
-                  // জয়েনিংয়ের পরের দিনগুলো ব্লক হবে, কিন্তু জয়েনিং ডেট সমান হলে মিল পাবে
+                  // Check if the member joined after the selected date
                   const isBeforeJoining = joinDate > currentDate;
 
                   return (
                     <tr key={m.userId} className="border-t">
                       <td className="p-3 text-left font-medium">{m.name}</td>
-                      <td className="p-3">{isBeforeJoining ? "❌" : m.breakfast ? "✅" : "❌"}</td>
-                      <td className="p-3">{isBeforeJoining ? "❌" : m.lunch ? "✅" : "❌"}</td>
-                      <td className="p-3">{isBeforeJoining ? "❌" : m.dinner ? "✅" : "❌"}</td>
+                     <td className="p-3">
+                 {isBeforeJoining ? "❌" : m.breakfast ? <Check size={16} className="text-green-500" /> : <X size={16} className="text-red-500" />}
+                 </td>
+                <td className="p-3">
+              {isBeforeJoining ? "❌" : m.lunch ? <Check size={16} className="text-green-500" /> : <X size={16} className="text-red-500" />}
+             </td>
+             <td className="p-3">
+             {isBeforeJoining ? "❌" : m.dinner ? <Check size={16} className="text-green-500" /> : <X size={16} className="text-red-500" />}
+                </td>
                       <td className="p-3 font-semibold text-orange-600">
                         {isBeforeJoining ? 0 : m.guestBreakfast + m.guestLunch + m.guestDinner}
                       </td>
@@ -168,8 +175,7 @@ const ManagerMealDashboard = () => {
           </div>
         </>
       )}
-
-      {/* মডাল কোডটি আগের মতোই থাকবে */}
+{/* modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4">
           <div className="bg-white p-6 rounded-lg w-full max-w-xs">
